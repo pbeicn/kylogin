@@ -7,183 +7,105 @@
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary"
-                   icon="delete"
-                   class="handle-del mr10"
-                   @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word"
-                  placeholder="用户名称"
-                  class="handle-input mr10"></el-input>
-        <el-button type="primary"
-                   @click="search"><span class="el-icon-search">&nbsp;</span>搜索</el-button>
-        <el-button type="primary"
-                   @click="handleAdd"><span class="fa fa-plus">&nbsp;</span>新增</el-button>
+        <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+        <el-input v-model="select_word" placeholder="用户名称" class="handle-input mr10"></el-input>
+        <el-button type="primary" @click="search"><span class="el-icon-search">&nbsp;</span>搜索</el-button>
+        <el-button type="primary" @click="handleAdd"><span class="fa fa-plus">&nbsp;</span>新增</el-button>
       </div>
-      <el-table :data="data"
-                ref="multipleTable"
-                @selection-change="handleSelectionChange">
-        <el-table-column type="selection"
-                         width="55"
-                         align="center"></el-table-column>
-        <el-table-column prop="userid"
-                         label=""
-                         v-if="hideRow"
-                         header-align="center"
-                         align="center">
+      <el-table :data="data" ref="multipleTable" @selection-change="handleSelectionChange">
+        <el-table-column type="selection" width="55" align="center"></el-table-column>
+        <el-table-column prop="userid" label="" v-if="hideRow" header-align="center" align="center">
         </el-table-column>
-        <el-table-column prop="username"
-                         label="用户名"
-                         cell-style="padding:0"
-                         align="center"
-                         width="120">
+        <el-table-column prop="username" label="用户名" cell-style="padding:0" align="center" width="120">
         </el-table-column>
-        <el-table-column prop="factname"
-                         label="实际姓名"
-                         align="center"
-                         width="120">
+        <el-table-column prop="factname" label="实际姓名" align="center" width="120">
         </el-table-column>
-        <el-table-column prop="description"
-                         label="描述"
-                         align="center"
-                         width="220">
+        <el-table-column prop="description" label="描述" align="center" width="220">
         </el-table-column>
-        <el-table-column label="操作"
-                         width="180"
-                         align="center">
+        <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="text"
-                       icon="el-icon-edit"
-                       @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button type="text"
-                       icon="el-icon-delete"
-                       class="red"
-                       @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <div class="pagination">
-        <el-pagination background
-                       @current-change="handleCurrentChange"
-                       :page-size="pagesize"
-                       layout="prev, pager, next"
-                       :total="total">
+        <el-pagination background @current-change="handleCurrentChange" :page-size="pagesize" layout="prev, pager, next" :total="total">
         </el-pagination>
       </div>
     </div>
     <!--新增界面-->
     <template>
-      <el-dialog title="新增"
-                 width="40%"
-                 :visible.sync="addFormVisible"
-                 :close-on-click-modal="false">
-        <el-form :model="addForm"
-                 label-width="80px"
-                 :rules="addFormRules"
-                 ref="addForm">
+      <el-dialog title="新增" width="40%" :visible.sync="addFormVisible" :close-on-click-modal="false">
+        <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
           <el-form-item label="登录名">
-            <el-input v-model="addForm.username"
-                      auto-complete="off"></el-input>
+            <el-input v-model="addForm.username" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="姓名">
-            <el-input v-model="addForm.factname"
-                      auto-complete="off"></el-input>
+            <el-input v-model="addForm.factname" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="出生日期">
-            <el-date-picker type="date"
-                            placeholder="选择日期"
-                            v-model="addForm.birthdate"
-                            value-format="yyyy-MM-dd"
-                            style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date" placeholder="选择日期" v-model="addForm.birthdate" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
           </el-form-item>
           <el-form-item label="性别">
-            <el-radio v-model="addForm.sex"
-                      label="1">男</el-radio>
-            <el-radio v-model="addForm.sex"
-                      label="2">女</el-radio>
+            <el-radio v-model="addForm.sex" label="1">男</el-radio>
+            <el-radio v-model="addForm.sex" label="2">女</el-radio>
           </el-form-item>
           <el-form-item label="email">
-            <el-input v-model="addForm.email"
-                      auto-complete="off"></el-input>
+            <el-input v-model="addForm.email" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="addForm.password"
-                      auto-complete="off"></el-input>
+            <el-input v-model="addForm.password" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="描述">
-            <el-input type="textarea"
-                      v-model="addForm.description"></el-input>
+            <el-input type="textarea" v-model="addForm.description"></el-input>
           </el-form-item>
         </el-form>
-        <div slot="footer"
-             class="dialog-footer">
+        <div slot="footer" class="dialog-footer">
           <el-button @click.native="addFormVisible = false">取消</el-button>
-          <el-button type="primary"
-                     @click.native="addSubmit('addForm')"
-                     :loading="addLoading">提交</el-button>
+          <el-button type="primary" @click.native="addSubmit('addForm')" :loading="addLoading">提交</el-button>
         </div>
       </el-dialog>
     </template>
     <!-- 编辑弹出框 -->
     <template>
-      <el-dialog title="编辑"
-                 :visible.sync="editVisible"
-                 width="40%">
-        <el-form ref="editform"
-                 :model="editform"
-                 label-width="80px">
+      <el-dialog title="编辑" :visible.sync="editVisible" width="40%">
+        <el-form ref="editform" :model="editform" label-width="80px">
           <el-form-item label="登录名">
-            <el-input v-model="editform.username"
-                      auto-complete="off"></el-input>
+            <el-input v-model="editform.username" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="姓名">
-            <el-input v-model="editform.factname"
-                      auto-complete="off"></el-input>
+            <el-input v-model="editform.factname" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="出生日期">
-            <el-date-picker type="date"
-                            placeholder="选择日期"
-                            v-model="editform.birthdate"
-                            value-format="yyyy-MM-dd"
-                            style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date" placeholder="选择日期" v-model="editform.birthdate" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
           </el-form-item>
           <el-form-item label="性别">
-            <el-radio v-model="editform.sex"
-                      label="1">男</el-radio>
-            <el-radio v-model="editform.sex"
-                      label="2">女</el-radio>
+            <el-radio v-model="editform.sex" label="1">男</el-radio>
+            <el-radio v-model="editform.sex" label="2">女</el-radio>
           </el-form-item>
           <el-form-item label="email">
-            <el-input v-model="editform.email"
-                      auto-complete="off"></el-input>
+            <el-input v-model="editform.email" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="editform.password"
-                      auto-complete="off"></el-input>
+            <el-input v-model="editform.password" auto-complete="off"></el-input>
           </el-form-item>
           <el-form-item label="描述">
-            <el-input type="textarea"
-                      v-model="editform.description"></el-input>
+            <el-input type="textarea" v-model="editform.description"></el-input>
           </el-form-item>
         </el-form>
-        <span slot="footer"
-              class="dialog-footer">
+        <span slot="footer" class="dialog-footer">
           <el-button @click="editVisible = false">取 消</el-button>
-          <el-button type="primary"
-                     @click="saveEdit">确 定</el-button>
+          <el-button type="primary" @click="saveEdit">确 定</el-button>
         </span>
       </el-dialog>
     </template>
     <!-- 删除提示框 -->
-    <el-dialog title="提示"
-               :visible.sync="delVisible"
-               width="300px"
-               center>
+    <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
       <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-      <span slot="footer"
-            class="dialog-footer">
+      <span slot="footer" class="dialog-footer">
         <el-button @click="delVisible = false">取 消</el-button>
-        <el-button type="primary"
-                   @click="deleteRow">确 定</el-button>
+        <el-button type="primary" @click="deleteRow">确 定</el-button>
       </span>
     </el-dialog>
   </div>
