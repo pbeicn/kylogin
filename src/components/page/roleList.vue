@@ -7,70 +7,37 @@
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-input v-model="select_word"
-                  placeholder="角色名称"
-                  class="handle-input mr10"></el-input>
-        <el-button type="primary"
-                   icon="search"
-                   @click="search">搜索</el-button>
-        <el-button type="primary"
-                   icon="add"
-                   @click="handleAdd">新增</el-button>
+        <el-input v-model="select_word" placeholder="角色名称" class="handle-input mr10"></el-input>
+        <el-button type="primary" icon="search" @click="search">搜索</el-button>
+        <el-button type="primary" icon="add" @click="handleAdd">新增</el-button>
       </div>
-      <el-table :data="data"
-                border
-                class="table"
-                :cell-style="cellStyle"
-                ref="multipleTable"
-                @selection-change="handleSelectionChange">
-        <el-table-column type="selection"
-                         width="55"
-                         align="center"></el-table-column>
-        <el-table-column prop="roleid"
-                         label="角色编码"
-                         width="120">
+      <el-table :data="data" border class="table" :cell-style="cellStyle" ref="multipleTable" @selection-change="handleSelectionChange">
+        <el-table-column type="selection" width="55" align="center"></el-table-column>
+        <el-table-column prop="roleid" label="角色编码" width="120">
         </el-table-column>
-        <el-table-column prop="rolename"
-                         label="角色名称">
+        <el-table-column prop="rolename" label="角色名称">
         </el-table-column>
-        <el-table-column label="操作"
-                         width="180"
-                         align="center">
+        <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="text"
-                       icon="el-icon-edit"
-                       @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button type="text"
-                       icon="el-icon-delete"
-                       class="red"
-                       @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <!--新增界面-->
       <template>
-        <el-dialog title="新增"
-                   width="40%"
-                   :visible.sync="addFormVisible"
-                   :close-on-click-modal="false">
-          <el-form :model="addForm"
-                   label-width="80px"
-                   ref="addForm">
+        <el-dialog title="新增" width="40%" :visible.sync="addFormVisible" :close-on-click-modal="false">
+          <el-form :model="addForm" label-width="80px" ref="addForm">
             <el-form-item label="角色名称">
-              <el-input v-model="addForm.rolename"
-                        auto-complete="off"></el-input>
+              <el-input v-model="addForm.rolename" auto-complete="off"></el-input>
             </el-form-item>
             <el-form-item label="描述">
-              <el-input type="textarea"
-                        v-model="addForm.description"></el-input>
+              <el-input type="textarea" v-model="addForm.description"></el-input>
             </el-form-item>
           </el-form>
-          <div slot="footer"
-               class="dialog-footer">
+          <div slot="footer" class="dialog-footer">
             <el-button @click.native="addFormVisible = false">取消</el-button>
-            <el-button type="primary"
-                       @click.native="addSubmit('addForm')"
-                       :loading="addLoading">提交</el-button>
+            <el-button type="primary" @click.native="addSubmit('addForm')" :loading="addLoading">提交</el-button>
           </div>
         </el-dialog>
       </template>

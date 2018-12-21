@@ -1,0 +1,54 @@
+{
+  "data": {
+  "mode": "history",
+    "router": [  {
+	"path" : "/",
+	"name" : "用户事项",
+	"component": "Layout",
+	"redirect": "/components/page/BaseTable",
+	"name": "用户事项",
+	"children" : [ {
+		"path" : "/components/page/menuList",
+		"name" : "菜单列表",
+		"component": "page/menuList",
+		"hidden" : false,
+		"meta" : {
+			"title" : "菜单列表",
+			"icon" : "table"
+		}
+	}, {
+		"path" : "/components/page/BaseTable",
+		"component": "page/BaseTable",
+		"name" : "用户列表",
+		"meta" : {
+			"title" : "用户列表",
+			"icon" : "table"
+		}
+	}, {
+		"path" : "/components/page/roleList",
+		"component": "page/roleList",
+		"name" : "角色列表",
+		"meta" : {
+			"title" : "角色列表",
+			"icon" : "table"
+		}
+	}, {
+		"path" : "/components/page/userRole",
+		"component": "page/userRole",
+		"name" : "角色与用户管理",
+		"meta" : {
+			"title" : "角色与用户管理",
+			"icon" : "table"
+		}
+	}, {
+		"path" : "/components/page/roleMenu",
+		"name" : "角色与菜单管理",
+		"component": "page/roleMenu",
+		"meta" : {
+			"title" : "角色与菜单管理",
+			"icon" : "table"
+		}
+	} ]
+}]
+  }
+}

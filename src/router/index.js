@@ -11,7 +11,10 @@ var constantRouterMap = [{
   hidden: true,
   children: [{
     path: '/dashboard',
-    component: () => import('@/components/page/Dashboard')
+    component: () => import('@/components/page/Dashboard'),
+    meta: {
+      title: '首页'
+    }
   }]
 },
 {
